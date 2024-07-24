@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { login, loginPostAsync } from "../../slice/loginSlice";
+import { useNavigate } from "react-router-dom";
 
 const initState = {
   email: "",
@@ -20,6 +21,8 @@ const LoginComponent = () => {
 
   const dispatch = useDispatch();
 
+  const navigate = useNavigate();
+
   const handleClickLogin = (event) => {
     event.preventDefault(); // stops reloading screen
     // dispatch(login(loginParam));
@@ -27,6 +30,12 @@ const LoginComponent = () => {
       .unwrap()
       .then((data) => {
         console.log("data returned from loginPostAsync:", data);
+        if (data.error) {
+          alert("email and password does not match");
+        } else {
+          alert("login success");
+          navigate({ pathname: "/" }, { replace: true }); // replace:true makes user unable to go Back and return back to the login page
+        }
       });
     setLoginParam({ ...initState });
   };
