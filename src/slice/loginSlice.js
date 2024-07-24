@@ -1,9 +1,14 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { loginPost } from "../api/memberApi";
-import { setCookie } from "../util/cookieUtil";
+import { getCookie, setCookie } from "../util/cookieUtil";
 
-const initialState = {
+const initState = {
   email: "",
+};
+
+const loadMemberCookie = () => {
+  const memberInfo = getCookie("member");
+  return memberInfo;
 };
 
 export const loginPostAsync = createAsyncThunk("loginPostAsync", (param) => {
@@ -12,7 +17,7 @@ export const loginPostAsync = createAsyncThunk("loginPostAsync", (param) => {
 
 const loginSlice = createSlice({
   name: "loginSlice",
-  initialState,
+  initialState: loadMemberCookie() || initState, // when reload page the loadMemberCookie still keeps the logged in state
   reducers: {
     login: (state, actions) => {
       console.log("login...");
@@ -21,7 +26,7 @@ const loginSlice = createSlice({
     },
     logout: () => {
       console.log("logout...");
-      return { ...initialState };
+      return { ...initState };
     },
   },
   extraReducers: (builder) => {
