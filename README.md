@@ -1,4 +1,4 @@
-Redux Toolkit & Thunk API practice.
+Redux Toolkit & Thunk API practice + Kakao Login practice
 <br />
 <br />
 This is the frontend for the 15_Shop code in the backend project:<br />
