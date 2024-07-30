@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { login, loginPostAsync } from "../../slice/loginSlice";
 import { useNavigate } from "react-router-dom";
+import KakaoLoginComponent from "./KakaoLoginComponent";
 
 const initState = {
   email: "",
@@ -42,7 +43,7 @@ const LoginComponent = () => {
 
   return (
     <div className="h-screen  flex items-center">
-      <div className="container mx-auto bg-sb-400">
+      <div className="container mx-auto">
         <div className="bg-white max-w-lg mx-auto p-8 md:p-12 my-10 rounded-lg shadow-2xl">
           <div>
             <h3 className="font-bold text-2xl">Welcome to Startup</h3>
@@ -97,6 +98,7 @@ const LoginComponent = () => {
               Sign In
             </button>
           </form>
+          <KakaoLoginComponent />
         </div>
       </div>
     </div>

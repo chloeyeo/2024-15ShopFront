@@ -15,7 +15,7 @@ export const loginPostAsync = createAsyncThunk("loginPostAsync", (param) => {
   return loginPost(param);
 });
 
-const loginSlice = createSlice({
+export const loginSlice = createSlice({
   name: "loginSlice",
   initialState: loadMemberCookie() || initState, // when reload page the loadMemberCookie still keeps the logged in state
   reducers: {

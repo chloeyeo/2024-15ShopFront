@@ -3,6 +3,9 @@ import { Suspense, lazy } from "react";
 
 const Login = lazy(() => import("../layouts/pages/member/LoginPage"));
 const Logout = lazy(() => import("../layouts/pages/member/LogoutPage"));
+const KakaoRedirect = lazy(() =>
+  import("../layouts/pages/member/KakaoRedirectPage")
+);
 
 const memberRouter = () => {
   return [
@@ -19,6 +22,14 @@ const memberRouter = () => {
       element: (
         <Suspense fallback={Loading}>
           <Logout />
+        </Suspense>
+      ),
+    },
+    {
+      path: "kakao",
+      element: (
+        <Suspense fallback={Loading}>
+          <KakaoRedirect />
         </Suspense>
       ),
     },
