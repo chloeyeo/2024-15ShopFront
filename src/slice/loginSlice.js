@@ -19,10 +19,15 @@ export const loginSlice = createSlice({
   name: "loginSlice",
   initialState: loadMemberCookie() || initState, // when reload page the loadMemberCookie still keeps the logged in state
   reducers: {
-    login: (state, actions) => {
+    login: (state, action) => {
       console.log("login...");
-      console.log("actions.payload:", actions.payload);
-      return { email: actions.payload.email };
+      console.log("actions.payload:", action.payload);
+
+      // carry out the login functionality
+      const payload = action.payload;
+      setCookie("member", JSON.stringify(payload), 1);
+      return payload;
+      // return { email: action.payload.email };
     },
     logout: () => {
       console.log("logout...");
